@@ -18,15 +18,16 @@
 use crate::token::Token;
 
 #[derive(Default, Debug)]
-struct Lexer {
+pub struct Lexer {
     input: String,
     position: usize,      // current position in input (points to current char)
     read_position: usize, // current reading position in input (after current char)
-    ch: u8,               // current char under examination
+    ch: u8, // current char under examination (this is a u8 because we are using 'byte literals')
+            // https://doc.rust-lang.org/reference/tokens.html#byte-and-byte-string-literals
 }
 
 impl Lexer {
-    fn new(input: &str) -> Self {
+    pub fn new(input: &str) -> Self {
         let mut lexer = Lexer {
             input: input.chars().collect::<String>(),
             ..Default::default()
